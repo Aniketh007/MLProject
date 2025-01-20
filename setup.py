@@ -16,6 +16,7 @@ setup(
     version='0.0.1',
     author='Aniketh Reddy Adireddy',
     author_email='anikethadireddy@gmail.com',
-    packages=find_packages(),
-    install_requires=get_requirements('requirements.txt')
+    packages=find_packages(where="src"),
+    install_requires=get_requirements('requirements.txt'),
+    package_dir={'': 'src'}
 )
