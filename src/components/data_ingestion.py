@@ -1,12 +1,13 @@
 import os
 import sys
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 from dataclasses import dataclass
 import pandas as pd
 from sklearn.model_selection import train_test_split
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 from src.logger import logging
 from src.exception import CustomException
 from src.components.data_transform import DataTransform, DataTransformConfig
+from src.components.model_trainer import ModelTrainer, ModelTrainerConfig
 
 @dataclass
 class DataIngestionConfig:
@@ -43,4 +44,6 @@ if __name__=="__main__":
     train_df,test_df=obj.initiate_data_ingestion()
 
     data_trans=DataTransform()
-    data_trans.initiate_data_transform(train_df,test_df)
+    train_arr,test_arr,_=data_trans.initiate_data_transform(train_df,test_df)
+    model_trainer=ModelTrainer()
+    model_trainer.initiate_model_trainer(train_arr,test_arr)
